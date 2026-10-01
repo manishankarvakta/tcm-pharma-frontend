@@ -18,22 +18,21 @@ ENV GENERATE_SOURCEMAP=false
 ENV DISABLE_ESLINT_PLUGIN=true
 ENV TSC_COMPILE_ON_ERROR=true
 ENV CI=false
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV INLINE_RUNTIME_CHUNK=false
+ENV NODE_OPTIONS="--max-old-space-size=2048"
 
 RUN npm run build
 
-# Stage 2: Serve the application using Node.js 'serve'
-FROM node:18-alpine
+# Stage 2: Serve the application using ultra-lightweight Nginx (~10-15MB RAM)
+FROM nginx:alpine
 
-WORKDIR /app
-
-# Install the 'serve' package locally or globally to serve the build
-RUN npm install -g serve
+# Copy custom Nginx configuration with SPA routing and Gzip
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the build output from the first stage
-COPY --from=build /app/build ./build
+COPY --from=build /app/build /usr/share/nginx/html
 
 EXPOSE 3005
 
-# Serve the static files on port 3005 with SPA routing (-s)
-CMD ["serve", "-s", "build", "-l", "3005"]
+# Run Nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]
