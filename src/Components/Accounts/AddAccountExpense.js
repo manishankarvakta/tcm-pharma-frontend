@@ -1,0 +1,484 @@
+import * as Icons from "heroicons-react";
+import { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { BsCheckSquare, BsSquare } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  inputAmount,
+  inputCardNo,
+  inputCardType,
+  inputCheckBankNo,
+  inputCheckNo,
+  inputMFSPhone,
+  inputMFSType,
+  inputNote,
+  inputPaidTo,
+  inputPaymentMethodType,
+  inputPaymentType,
+  inputType,
+  resetAccount,
+  selectAccountHead,
+  selectStatus,
+} from "../../features/accountSlice";
+import { useAddAccountMutation } from "../../services/accountApi";
+import { useAccountheadSubQuery } from "../../services/accountHeadApi";
+import SelectAccountHead from "../Common/CustomSelect/SelectAccountHead";
+import SelectSubAccountHead from "../Common/CustomSelect/SelectSubAccountHead";
+import Header from "../Common/Header/Header";
+import SideBar from "../Common/SideBar/SideBar";
+import { signInUser } from "../Utility/Auth";
+import { notify } from "../Utility/Notify";
+
+const AddAccountExpense = () => {
+  const user = signInUser();
+  const { aamarId, warehouse } = user;
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.languageReducer);
+
+  const navigate = useNavigate();
+  const [accountHead, setAccountHead] = useState("");
+  const [isCash, setIsCash] = useState(true);
+  const [isCheque, setIsCheque] = useState(false);
+  const [isCard, setIsCard] = useState(false);
+  const [isMfs, setIsMfs] = useState(false);
+  const { register, handleSubmit, reset, setValue } = useForm({});
+  const accountData = useSelector((state) => state.accountReducer);
+
+  const [addAccount] = useAddAccountMutation();
+
+  const { data, error, isLoading, isFetching, isSuccess } =
+    useAccountheadSubQuery(`${accountHead}`, { skip: !accountHead });
+
+  const handleAcHeadChange = (e) => {
+    // console.log(e)
+    if (e && e.option) {
+      setAccountHead(e.option);
+      dispatch(selectAccountHead(e.option));
+    } else {
+      setAccountHead("");
+      dispatch(selectAccountHead(null));
+    }
+  };
+  const handleSubAcHeadChange = (e) => {
+    // console.log(e)
+    if (e && e.option) {
+      dispatch(selectAccountHead(e.option));
+    }
+  };
+
+  const handleDeSelectCash = () => {
+    setIsCash(false);
+    dispatch(inputPaymentMethodType(""));
+  };
+  const handleCash = () => {
+    setIsCash(true);
+    setIsCheque(false);
+    setIsCard(false);
+    setIsMfs(false);
+    dispatch(inputPaymentMethodType("Cash"));
+  };
+  const handleDeselectCheque = () => {
+    setIsCheque(false);
+    dispatch(inputPaymentMethodType(""));
+  };
+  const handleCheque = () => {
+    setIsCheque(true);
+    setIsCash(false);
+    // setIsCheque(false)
+    setIsCard(false);
+    setIsMfs(false);
+    dispatch(inputPaymentMethodType("Cheque"));
+  };
+  const handleDeselectCard = () => {
+    setIsCard(false);
+    dispatch(inputPaymentMethodType(""));
+  };
+  const handleIsCard = () => {
+    setIsCard(true);
+    setIsCash(false);
+    setIsCheque(false);
+    // setIsCard(false)
+    setIsMfs(false);
+    dispatch(inputPaymentMethodType("Card"));
+  };
+  const handleDeselectMfs = () => {
+    setIsMfs(false);
+    dispatch(inputPaymentMethodType(""));
+  };
+  const handleIsMfs = () => {
+    setIsMfs(true);
+    setIsCash(false);
+    setIsCheque(false);
+    setIsCard(false);
+    dispatch(inputPaymentMethodType("MFS"));
+    // setIsMfs(false)
+  };
+  const handleAddAccountExpense = async () => {
+    // console.log(accountData);
+    if (accountData.paymentMethodType === "") {
+      notify("Please Select A Payment Type", "error");
+      return;
+    } else {
+      //   console.log("accountData", accountData);
+      //   console.log(accountData);
+      if (accountData.accountHead === null) {
+        notify("Please Select A Account Head", "error");
+      } else {
+        // console.log("accountData", accountData);
+        await addAccount({ ...accountData, aamarId, warehouse })
+          .then((res) => {
+            // console.log(res);
+            if (res?.data) {
+              notify("Account Created SuccessFully", "success");
+              navigate(`/accounts`);
+              dispatch(resetAccount());
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+  };
+  const navigateToAccount = () => {
+    navigate(`/accounts`);
+    dispatch(resetAccount());
+  };
+  return (
+    <div>
+      <div className="container-fluid ">
+        <div className="row">
+          <div className="col-md-2">
+            <SideBar></SideBar>
+          </div>
+          <div className="col-md-10">
+            <Header title={lang?.addExpense}></Header>
+            <div className="row">
+              {/* <div className="col-md-9  mt-2 mb-2">Filters</div> */}
+              <div className="d-flex gap-2 mt-2 justify-content-end">
+                <div className="">
+                  <Link
+                    to="/addAfterSale"
+                    className="btn  btn-sm btn-dark float-end"
+                  >
+                    <Icons.Plus className="icon-edit" size={20}></Icons.Plus>
+                    {lang?.afterSalePayment}
+                  </Link>
+                </div>
+                {/* <div className="col-md-9  mt-2 mb-2">Filters</div> */}
+                <div className="">
+                  <Link
+                    to="/addAccountExpense"
+                    className="btn btn-dark float-end btn-sm"
+                  >
+                    <Icons.Plus className="icon-edit" size={20}></Icons.Plus>
+                    {lang?.addExpense}
+                  </Link>
+                </div>
+                <div className="">
+                  <Link
+                    to="/addAccount"
+                    className="btn btn-sm btn-dark float-end"
+                  >
+                    <Icons.Plus className="icon-edit" size={20}></Icons.Plus>
+                    {lang?.addPayment}
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Form
+              className="pt-3"
+              onSubmit={handleSubmit(handleAddAccountExpense)}
+            >
+              <div className="row">
+                <div className="col-6">
+                  <Form.Group className="" controlId="warehouse">
+                    <Form.Label>Master Account Head</Form.Label>
+                    <SelectAccountHead
+                      handleOnchange={handleAcHeadChange}
+                      //   {...setValue("supplier", `${supplierProductId}`)}
+                      // {...register("supplier_code", { required: true })}
+                    ></SelectAccountHead>
+                  </Form.Group>
+                </div>
+                <div className="col-6">
+                  <Form.Group className="" controlId="warehouse">
+                    <Form.Label>Sub Account Head</Form.Label>
+                    <SelectSubAccountHead
+                      data={data}
+                      error={error}
+                      isLoading={isLoading || isFetching}
+                      isSuccess={isSuccess}
+                      handleOnchange={handleSubAcHeadChange}
+                      //   {...setValue("supplier", `${supplierProductId}`)}
+                      // {...register("supplier_code", { required: true })}
+                    ></SelectSubAccountHead>
+                  </Form.Group>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <p>Payment Type</p>
+                  <p>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <div className="d-flex justify-content-center align-items-center">
+                        <b>Cash </b>
+                        {isCash ? (
+                          <BsCheckSquare onClick={() => handleDeSelectCash()} />
+                        ) : (
+                          <BsSquare onClick={() => handleCash()} />
+                        )}
+                      </div>
+                      <div className="d-flex justify-content-center align-items-center ms-3">
+                        <b>Cheque </b>
+                        {isCheque ? (
+                          <BsCheckSquare
+                            onClick={() => handleDeselectCheque()}
+                          />
+                        ) : (
+                          <BsSquare onClick={() => handleCheque()} />
+                        )}
+                      </div>
+                      <div className="d-flex justify-content-center align-items-center ms-3">
+                        <b>Card </b>
+                        {isCard ? (
+                          <BsCheckSquare onClick={() => handleDeselectCard()} />
+                        ) : (
+                          <BsSquare onClick={() => handleIsCard()} />
+                        )}
+                      </div>
+                      <div className="d-flex justify-content-center align-items-center ms-3">
+                        <b>MFS </b>
+                        {isMfs ? (
+                          <BsCheckSquare onClick={() => handleDeselectMfs()} />
+                        ) : (
+                          <BsSquare onClick={() => handleIsMfs()} />
+                        )}
+                      </div>
+                    </div>
+                  </p>
+                </div>
+                <div className="col-md-3 col-6">
+                  <Form.Group className="mb-3" controlId="formBasicStatus">
+                    <Form.Label>Type</Form.Label>
+                    <Form.Select
+                      onChange={(e) => dispatch(inputType(e.target.value))}
+                    >
+                      <option value="Debit">Debit</option>
+                      <option value="Credit">Credit</option>
+                    </Form.Select>
+                  </Form.Group>
+                </div>
+                <div className="col-md-3 col-6">
+                  <Form.Group className="mb-3" controlId="formBasicStatus">
+                    <Form.Label>Payment Type</Form.Label>
+                    <Form.Select
+                      onChange={(e) =>
+                        dispatch(inputPaymentType(e.target.value))
+                      }
+                    >
+                      <option value="Advance">Advance</option>
+                      <option value="Payment">Payment</option>
+                    </Form.Select>
+                  </Form.Group>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <p>
+                    Amount :
+                    <input
+                      onChange={(e) => dispatch(inputAmount(e.target.value))}
+                      type="text"
+                      className="form-control quantity"
+                      width="60%"
+                    ></input>
+                  </p>
+                  {isCheque ? (
+                    <p>
+                      Cheque No :
+                      <input
+                        onChange={(e) => dispatch(inputCheckNo(e.target.value))}
+                        type="text"
+                        className="form-control quantity"
+                        width="60%"
+                      ></input>
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+                  {isCheque ? (
+                    <p>
+                      Bank Name :
+                      <Form.Select
+                        name="bankName"
+                        id="bankName"
+                        aria-label="Default select example"
+                        onChange={(e) =>
+                          dispatch(inputCheckBankNo(e.target.value))
+                        }
+                      >
+                        <option value="Bank Asia" selected>
+                          Bank Asia
+                        </option>
+                        <option value="Padma Bank"> Padma Bank </option>
+                        <option value="Standard Chartered Bank">
+                          {" "}
+                          Standard Chartered Bank{" "}
+                        </option>
+                        <option value="City Bank"> City Bank </option>
+                        <option value="Dutch Bangla Bank">
+                          {" "}
+                          Dutch Bangla Bank{" "}
+                        </option>
+                        {/* <option value="Union Pay"> Union Pay </option>
+                                                <option value="LankaBangla"> LankaBangla </option>
+                                                <option value="IPDC card"> IPDC card </option>
+                                                <option value="NPSB card"> NPSB card </option> */}
+                      </Form.Select>
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+
+                  {isCard ? (
+                    <p>
+                      Card No :
+                      <input
+                        onChange={(e) => dispatch(inputCardNo(e.target.value))}
+                        type="text"
+                        className="form-control quantity"
+                        width="60%"
+                      ></input>
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+                  {isCard ? (
+                    <p>
+                      Type :
+                      <Form.Select
+                        onChange={(e) =>
+                          dispatch(inputCardType(e.target.value))
+                        }
+                        name="cardType"
+                        id="cardType"
+                        aria-label="Default select example"
+                      >
+                        <option value="Visa" selected>
+                          Visa
+                        </option>
+                        <option value="Master"> Master </option>
+                        <option value="Amex"> Amex </option>
+                        <option value="Citymax"> Citymax </option>
+                        <option value="DBBL Nexus"> DBBL Nexus </option>
+                        <option value="Union Pay"> Union Pay </option>
+                        <option value="LankaBangla"> LankaBangla </option>
+                        <option value="IPDC card"> IPDC card </option>
+                        <option value="NPSB card"> NPSB card </option>
+                      </Form.Select>
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+
+                  {isMfs ? (
+                    <p>
+                      Phone No :
+                      <input
+                        onChange={(e) =>
+                          dispatch(inputMFSPhone(e.target.value))
+                        }
+                        type="text"
+                        className="form-control quantity"
+                        width="60%"
+                      ></input>
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+                  {isMfs ? (
+                    <p>
+                      Type :
+                      <Form.Select
+                        onChange={(e) => dispatch(inputMFSType(e.target.value))}
+                        name="mfsName"
+                        id="mfsName"
+                        aria-label="Default select example"
+                      >
+                        <option value="bKash"> Bkash</option>
+                        <option value="Nagad"> Nagad </option>
+                        <option value="Upay"> Upay </option>
+                        <option value="Rocket"> Rocket</option>
+                        <option value="Okwallet"> Okwallet</option>
+                        <option value="M-cash"> M-cash</option>
+                        <option value="Citytouch"> Citytouch </option>
+                        <option value="Dmoney"> Dmoney </option>
+                        <option value="I-pay"> I-pay</option>
+                        <option value="Q-Cash"> Q-Cash</option>
+                        <option value="Sure Cash"> Sure Cash</option>
+                      </Form.Select>
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+
+                  <p>
+                    Name :
+                    <input
+                      onChange={(e) => dispatch(inputPaidTo(e.target.value))}
+                      type="text"
+                      className="form-control quantity"
+                      width="60%"
+                    ></input>
+                  </p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <p>
+                    Note :
+                    <textarea
+                      onChange={(e) => dispatch(inputNote(e.target.value))}
+                      type="text"
+                      className="form-control quantity"
+                      width="60%"
+                    ></textarea>
+                  </p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6">
+                  <Form.Group className="mb-3" controlId="formBasicStatus">
+                    <Form.Label>Status</Form.Label>
+                    <Form.Select
+                      onChange={(e) => dispatch(selectStatus(e.target.value))}
+                    >
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                    </Form.Select>
+                  </Form.Group>
+                </div>
+              </div>
+              <Button
+                onClick={() => navigateToAccount()}
+                variant="dark"
+                className="float-center me-2"
+              >
+                <Icons.X size={20}></Icons.X> Cancel
+              </Button>
+
+              <Button variant="dark" className="float-center" type="submit">
+                <Icons.PlusOutline size={20}></Icons.PlusOutline> Save
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AddAccountExpense;

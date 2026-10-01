@@ -1,0 +1,25 @@
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; /* Makes the table horizontally scrollable when content overflows */
+  -webkit-overflow-scrolling: touch; /* Improves scrolling on mobile */
+}
+
+.table-responsive table {
+  min-width: 800px; /* Ensure the table has a minimum width to enable scrolling */
+}
+
+.table-borderless tbody tr td {
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+
+.icon-edit,
+.icon-trash {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.icon-edit:hover,
+.icon-trash:hover {
+  transform: scale(1.1);
+}

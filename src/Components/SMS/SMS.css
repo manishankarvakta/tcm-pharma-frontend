@@ -1,0 +1,23 @@
+.h-70vh {
+  height: 70vh;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 20px;
+  overflow: hidden;
+  overflow-y: scroll;
+  /* height: 100%; */
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.text-red {
+  color: #1477BD
+}
+
+.card-deck {
+  max-height: 100%;
+}

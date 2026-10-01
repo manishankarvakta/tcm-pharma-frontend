@@ -1,0 +1,118 @@
+.report-sidebar {
+    display: block;
+    height: 100vh;
+    background-color: #FFFFFF;
+    border-right: 1px solid #E9ECEF;
+    /* box-shadow: 2px 0 8px rgba(0,0,0,0.05); */
+  }
+  
+  .report-sidebar-logo {
+    width: 60%;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+  
+  .report-sidebar-nav {
+    padding: 1rem;
+  }
+  
+  .report-sidebar-menu-section {
+    margin-bottom: 1rem;
+  }
+  
+  .report-sidebar-link {
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: #6C757D;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .report-sidebar-link-child {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+  }
+  
+  .report-sidebar-link:hover {
+    background-color: #E9ECEF;
+    color: #F2652D;
+    transform: translateX(2px);
+  }
+  
+  .report-sidebar-link.active {
+    background-color: #F8F9FA;
+    color: #F2652D;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .report-sidebar-icon {
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .report-sidebar-submenu {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    border-left: 2px solid #E9ECEF;
+  }
+  
+  .report-sidebar-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .report-sidebar-menu-title {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+  }
+  
+  /* Animation for submenu */
+  .report-sidebar-submenu {
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .report-sidebar {
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid #E9ECEF;
+    }
+    
+    .report-sidebar-nav {
+      padding: 0.5rem;
+    }
+    
+    .report-sidebar-link {
+      padding: 8px 12px;
+    }
+  } 

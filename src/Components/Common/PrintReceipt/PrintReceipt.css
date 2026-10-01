@@ -1,0 +1,117 @@
+/* @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap'); */
+
+.print-area {
+  /* font-family: 'DotGothic16', sans-serif; */
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+.print-wrapper {
+  padding: 1px !important;
+  margin: 0 !important;
+}
+
+.print-wrapper .print-logo {
+  max-width: 150px;
+  margin-bottom: 2px !important;
+}
+
+p.info {
+  font-size: 0.75em;
+  margin: 0 auto;
+  padding: 0;
+  line-height: 1.25;
+}
+
+p.bill-info {
+  /* font-family: 'DotGothic16', sans-serif; */
+  font-size: 0.75em;
+  margin: 1px auto;
+  padding: 1px 0;
+  line-height: 1.2;
+}
+
+p.order_details {
+  font-weight: 600;
+  font-size: 0.78em;
+  margin: 3px auto 1px;
+  padding: 0;
+  line-height: 1.2;
+}
+
+p.nb {
+  font-size: 0.68em;
+  margin-top: 2px;
+  margin-bottom: 1px;
+  padding: 0;
+  line-height: 1.25;
+}
+
+.print-wrapper th {
+  font-weight: 600;
+}
+
+.print-wrapper table.table,
+.print-area table.table {
+  width: 100%;
+  table-layout: fixed;
+  margin-bottom: 2px !important;
+  border-collapse: collapse;
+}
+
+.print-wrapper .table > :not(caption) > * > *,
+.print-area .table > :not(caption) > * > *,
+.print-wrapper th,
+.print-wrapper td {
+  font-size: 0.72em !important;
+  padding: 1px 2px !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  vertical-align: middle;
+}
+
+.print-wrapper tr.d-print-table-row {
+  white-space: nowrap !important;
+}
+
+.print-wrapper td.item-name-cell,
+.print-area td.item-name-cell {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 0 !important;
+}
+
+p.bar-code {
+  margin-bottom: 0px;
+}
+
+p.bar-code svg {
+  width: 220px;
+}
+
+p.info.footer {
+  margin: 0px auto;
+  line-height: 1.2;
+}
+
+p.text-center.pt-2 {
+  font-size: 0.75em;
+  margin-bottom: 0px;
+  padding-top: 0px !important;
+}
+
+p.invoice {
+  font-size: 0.75em;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+
+.print-wrapper p.header {
+  font-size: 0.72em;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+

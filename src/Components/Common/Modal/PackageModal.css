@@ -1,0 +1,41 @@
+.packageModal .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .packageModal .message {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  .packageModal .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #ff5100ef;
+    border-color: #ff5100f3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .packageModal .btn-primary:hover {
+    background-color: #ff5100;
+    border-color: #ff5100;
+    transform: translateY(-2px);
+  }
+  
+  .packageModal .modal-header {
+    border-bottom: none;
+  }
+  
+  .packageModal .modal-body {
+    padding: 2rem;
+  }
+  
+  .packageModal .modal-footer {
+    border-top: none;
+  }
+  

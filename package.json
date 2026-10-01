@@ -1,0 +1,103 @@
+{
+  "name": "pharma-pos-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@chakra-ui/react": "^3.2.3",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^5.14.14",
+    "@mui/material": "^5.16.9",
+    "@reduxjs/toolkit": "^1.8.3",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.42",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "@types/react-helmet": "^6.1.5",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.1.3",
+    "chart.js": "^3.9.1",
+    "daisyui": "^2.14.3",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.0.1",
+    "es6-promise": "^4.2.8",
+    "eslint-plugin-react": "^7.30.1",
+    "file-saver": "^2.0.5",
+    "framer-motion": "^11.14.4",
+    "heroicons-react": "^1.4.1",
+    "isomorphic-fetch": "^3.0.0",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
+    "jwt-decode": "^4.0.0",
+    "material-react-table": "^1.14.0",
+    "md5": "^2.3.0",
+    "qs": "^6.11.0",
+    "query-string": "^7.1.1",
+    "react": "^18.2.0",
+    "react-barcode": "^1.4.1",
+    "react-bootstrap": "^2.3.0",
+    "react-chartjs-2": "^4.2.0",
+    "react-csv": "^2.2.2",
+    "react-daisyui": "^2.0.1",
+    "react-data-table-component": "^7.5.4",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.3.8",
+    "react-easy-crop": "^5.4.1",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.30.0",
+    "react-hot-toast": "^2.2.0",
+    "react-icons": "^4.3.1",
+    "react-image-file-resizer": "^0.4.8",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-loading-skeleton": "^3.1.0",
+    "react-paginate": "^8.1.3",
+    "react-papaparse": "^4.0.2",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.3.1",
+    "react-to-print": "^2.14.6",
+    "react-use-keypress": "^1.3.1",
+    "redux-persist": "^6.0.0",
+    "sweetalert2": "^11.26.24",
+    "typescript": "^4.7.4",
+    "uuid": "^11.0.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "CI=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "react-scripts start --host"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "ajv": "^8.18.0",
+    "ajv-keywords": "^5.1.0",
+    "eslint": "^8.0.0",
+    "eslint-config-react-app": "^7.0.1"
+  }
+}

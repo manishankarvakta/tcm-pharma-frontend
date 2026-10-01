@@ -1,0 +1,75 @@
+.nav-link {
+  color: #333;
+}
+.nav-link:hover {
+  color: tomato;
+}
+
+.nav-link.active {
+  color: tomato !important;
+}
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: rgb(240, 238, 238);
+  color: #333;
+  padding: 2rem;
+  transition: transform 0.5s ease; /* Smooth transition for sliding in/out */
+  z-index: 1050; /* Ensure it's above other content */
+  overflow-y: auto;
+}
+
+/* When the sidebar is open */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* When the sidebar is closed */
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+/* Sidebar items styling */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 2px;
+}
+
+.sidebar .nav-link {
+  color: #333;
+  text-decoration: none;
+  padding: 8px;
+}
+
+
+
+/* Mobile Hamburger Button */
+.sidebar-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Show the hamburger menu in mobile view */
+  .sidebar-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+  }
+}
+
+
+.custom-hover:hover {
+  color: rgb(242, 101, 45) !important;
+  cursor: pointer;
+}

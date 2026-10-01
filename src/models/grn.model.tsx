@@ -1,0 +1,17 @@
+export interface Grn {
+  _id: string,
+  grnNo: string,
+  poNo: string,
+  supplier: string,
+  warehouse: string,
+  products: any,
+  type: string,
+  note: string,
+  doc: string,
+  totalItem: string,
+  total: string,
+  discount: string,
+  tax: string,
+  userId: string,
+  status: string,
+}

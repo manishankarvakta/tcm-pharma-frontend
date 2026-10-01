@@ -1,0 +1,17 @@
+/* Default input width */
+input.sm-input {
+  width: 100%;
+}
+
+/* Expand input fields for Qty, TP, and MRP on small screens */
+@media (max-width: 576px) {
+  th.sm-wider,
+  td > input.sm-input {
+    width: 80px !important;
+  }
+
+  /* Adjust font size for better readability */
+  input.sm-input {
+    font-size: 14px;
+  }
+}

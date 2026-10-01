@@ -1,0 +1,25 @@
+.print-wrapper p{
+    margin: 0;
+    padding: 0;
+}
+.print-wrapper p.name{
+    margin-top: 5px;
+    margin-bottom: -1px;
+    padding: 0;
+    font-size: .7em;
+    line-height: 1em;
+    z-index: 1055 !important;
+}
+.print-wrapper p.mrp{
+    margin-top: -5px;
+    font-size: .8em;
+    z-index: 1055 !important;
+    padding: 0;
+}
+
+
+.print-wrapper .barCode{
+    margin: 0;
+    padding: 0;
+    z-index: 1050 !important;
+}

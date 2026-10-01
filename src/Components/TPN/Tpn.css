@@ -1,0 +1,28 @@
+/* Custom CSS for better spacing on smaller screens */
+@media (max-width: 576px) {
+  .table th, .table td {
+    font-size: 14px;  /* Adjust font size */
+    padding: 8px;     /* Reduce padding for small screens */
+  }
+
+  .table-responsive {
+    -webkit-overflow-scrolling: touch;  /* Smooth scrolling on mobile */
+  }
+}
+/* Default input width */
+input.sm-input {
+  width: 100%;
+}
+
+/* Expand input fields for Qty, TP, and MRP on small screens */
+@media (max-width: 576px) {
+  th.sm-wider,
+  td > input.sm-input {
+    width: 80px !important;
+  }
+
+  /* Adjust font size for better readability */
+  input.sm-input {
+    font-size: 14px;
+  }
+}

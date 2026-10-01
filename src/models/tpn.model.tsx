@@ -1,0 +1,15 @@
+export interface Tpn {
+    _id: string,
+    tpnNo: string,
+    poNo: string,
+    warehouseTo: string,
+    warehouseFrom: string,
+    products: any,
+    type: string,
+    note: string,
+    doc: string,
+    totalItem: string,
+    total: string,
+    userId: string,
+    status: string,
+}

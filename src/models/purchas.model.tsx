@@ -1,0 +1,17 @@
+export interface Purchase {
+    _id: string,
+    poNo: string,
+    supplier: string,
+    warehouse: string,
+    products: any,
+    type: string,
+    note: string,
+    doc: string,
+    totalItem: string,
+    total: string,
+    discount: string,
+    tax: string,
+    shipping_cost: string,
+    userId: string,
+    status:string,
+}

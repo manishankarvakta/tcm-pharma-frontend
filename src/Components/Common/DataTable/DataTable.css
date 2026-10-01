@@ -1,0 +1,7 @@
+.filterSelect{
+    display: flex;
+}
+.filterSelect label{
+    text-transform: uppercase;
+    
+}

@@ -1,0 +1,15 @@
+.form-text{
+    display: none;
+}
+
+td ul{
+    /* display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding:0px */
+}
+
+
+ul.pagination.pagination-md.justify-content-center {
+    overflow: hidden;
+}

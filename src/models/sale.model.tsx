@@ -1,0 +1,22 @@
+export interface Sale{ 
+    _id:string,
+    invoiceId: string,
+    source: string,
+    warehouse: string,
+    products: any,
+    changeAmount: number,
+    totalItem: number,
+    total: number,
+    returnProducts: any,
+    returnInvoice: string,
+    returnCal: any,
+    vat: number,
+    discount: number,
+    billerId: string,
+    customerId: string,
+    status: string,
+    totalReceived:number,
+    grossTotalRound:number,
+    updateUser:string,
+    grossTotal:number
+}

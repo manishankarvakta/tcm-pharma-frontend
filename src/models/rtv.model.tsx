@@ -1,0 +1,15 @@
+export interface Rtv {
+  _id: string,
+  rtvNo: string,
+  supplier: string,
+  warehouse: string,
+  products: any,
+  type: string,
+  qty:string,
+  note: string,
+  doc: string,
+  totalItem: string,
+  total: string,
+  userId: string,
+  status: string,
+}

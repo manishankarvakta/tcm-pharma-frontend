@@ -1,0 +1,83 @@
+.search-wrapper {
+    position: absolute;
+    background: white;
+    z-index: 9;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    max-height: 500px;
+    overflow-y: scroll;
+    padding: 30px;
+
+}
+
+li {
+    list-style: none;
+    cursor: pointer;
+}
+
+li:hover {
+    color: #1477BD;
+}
+
+.remove-from-cart {
+    cursor: pointer;
+}
+
+.remove-from-cart:hover {
+    color: #1477BD;
+}
+
+.from-group svg {
+    height: 20px;
+}
+
+.from-group input {
+    height: 20px;
+}
+
+.pos-wrapper nav {
+    margin-top: 22px;
+    margin-bottom: 15px;
+}
+
+.pos-wrapper nav a {
+    padding: 15px 0;
+}
+
+input.quantity {
+    height: 30px;
+}
+
+/* Default input width */
+input.sm-input {
+  width: 100%;
+}
+
+/* Expand input fields for Qty, TP, and MRP on small screens */
+@media (max-width: 576px) {
+  th.sm-wider,
+  td > input.sm-input {
+    width: 80px !important;
+  }
+
+  /* Adjust font size for better readability */
+  .sm-input {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+        .quantity {
+        width: 40px !important; /* Increase width on small screens */
+        }
+        .input-group-text {
+          font-size: 0.875rem; /* Adjust font size for better fit */
+        }
+      }

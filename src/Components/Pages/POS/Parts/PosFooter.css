@@ -1,0 +1,74 @@
+/* Floating Button */
+.floating-btn {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(320deg, #e1a48cfd, #fff);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgb(0, 0, 0);
+
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  bottom: 30px;
+  left: 20px; /* Position the floating button to the left */
+  padding: 6px;
+  border: 1px solid gray;
+}
+
+/* Popup Menu */
+.popup-menu {
+  position: fixed;
+  left: 26px; /* Align the popup menu to the left of the floating button */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  z-index: 999;
+  animation: slide-up 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column; /* Change to row for horizontal layout */
+
+  gap: 4px; /* Adjust spacing further */
+  bottom: 85px; /* Adjust for mobile devices */
+}
+@keyframes slide-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Popup Button */
+.popup-btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  transition: background-color 0.3s ease;
+  font-size: 10px; /* Even smaller font size for very small devices */
+
+  flex-direction: row;
+  gap: 0px;
+}
+
+.popup-btn:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Icon Styling */
+.popup-btn .icon {
+  margin-right: 8px;
+}

@@ -1,0 +1,21 @@
+td svg {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+td svg.icon-trash:hover {
+    fill: #1477BD;
+}
+
+td svg.icon-eye:hover {
+    fill: greenyellow;
+}
+
+td svg.icon-edit:hover {
+    fill: gold;
+}
+
+td a svg.icon-edit,
+td a svg.icon-eye {
+    color: #212529;
+}
